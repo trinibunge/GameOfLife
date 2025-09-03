@@ -1,7 +1,7 @@
 namespace Ucu.Poo.GameOfLife;
 public class GameBoard
 {
-    private bool[,] gameBoard = board.txt;
+    private bool[,] gameBoard;
 
     public int boardWidth = gameBoard.GetLength(0);
     public int boardHeight = gameBoard.GetLength(1);
