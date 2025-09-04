@@ -1,56 +1,23 @@
 namespace Ucu.Poo.GameOfLife;
 public class GameBoard
 {
-    private bool[,] gameBoard = board.txt;
+    bool[,] gameBoard = "board.txt";
+    int boardWidth = gameBoard.GetLength(0);
+    int boardHeight = gameBoard.GetLength(1);
 
-    public int boardWidth = gameBoard.GetLength(0);
-    public int boardHeight = gameBoard.GetLength(1);
-
-    public GameBoard(int width, int height)
-    {
-        gameBoard = new bool[width, height];
-    }
-
-    public bool GetCell(int x, int y)
-    {
-        return gameBoard[x, y];
-    }
-
-    public void SetCell(int x, int y, bool value)
-    {
-        gameBoard[x, y] = value;
-    }
-
-    public GameBoard Clone()
-    {
-        GameBoard cloneboard = new GameBoard(boardWidth, boardHeight);
-        for (int x = 0; x < boardWidth; x++)
-        {
-            for (int y = 0; y < boardHeight; y++)
-            {
-                cloneboard.SetCell(x, y, GetCell(x, y));
-            }
-        }
-        return cloneboard;
-    }
-    
-    public void UpdateBoard()
+    public void ActualizarTablero()
     {
         bool[,] cloneboard = new bool[boardWidth, boardHeight];
-
         for (int x = 0; x < boardWidth; x++)
         {
             for (int y = 0; y < boardHeight; y++)
             {
                 int aliveNeighbors = 0;
-
                 for (int i = x - 1; i <= x + 1; i++)
                 {
                     for (int j = y - 1; j <= y + 1; j++)
                     {
-                        if (i >= 0 && i < boardWidth &&
-                            j >= 0 && j < boardHeight &&
-                            gameBoard[i, j])
+                        if (i >= 0 && i < boardWidth && j >= 0 && j < boardHeight && gameBoard[i, j])
                         {
                             aliveNeighbors++;
                         }
@@ -58,16 +25,30 @@ public class GameBoard
                 }
 
                 if (gameBoard[x, y])
-                    aliveNeighbors--; 
+                {
+                    aliveNeighbors--;
+                }
 
                 if (gameBoard[x, y] && aliveNeighbors < 2)
-                    cloneboard[x, y] = false; 
+                {
+                    //Celula muere por baja población
+                    cloneboard[x, y] = false;
+                }
                 else if (gameBoard[x, y] && aliveNeighbors > 3)
-                    cloneboard[x, y] = false; 
+                {
+                    //Celula muere por sobrepoblación
+                    cloneboard[x, y] = false;
+                }
                 else if (!gameBoard[x, y] && aliveNeighbors == 3)
-                    cloneboard[x, y] = true; 
+                {
+                    //Celula nace por reproducción
+                    cloneboard[x, y] = true;
+                }
                 else
-                    cloneboard[x, y] = gameBoard[x, y]; 
+                {
+                    //Celula mantiene el estado que tenía
+                    cloneboard[x, y] = gameBoard[x, y];
+                }
             }
         }
 
