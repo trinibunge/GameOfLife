@@ -1,12 +1,18 @@
 ﻿using System;
+using Ucu.Poo.GameOfLife;
 
-namespace Ucu.Poo.GameOfLife
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
+        // Cargar tablero
+        GameBoard game = new GameBoard();
+
+        // Crear el printer
+        GamePrinter printer = new GamePrinter();
+
+        // Arranca el bucle del juego
+        printer.Print(game.gameBoard, game);
     }
 }
+

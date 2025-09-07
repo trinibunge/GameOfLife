@@ -1,20 +1,30 @@
-<<<<<<< HEAD
-=======
 namespace Ucu.Poo.GameOfLife;
+
 public class GameBoard
 {
-    bool[,] gameBoard = "board.txt";
-    int boardWidth = gameBoard.GetLength(0);
-    int boardHeight = gameBoard.GetLength(1);
+    BoardLoader loader;
+    public bool[,] gameBoard; 
+    int boardWidth;
+    int boardHeight;
+    
+    public GameBoard()
+    {
+        loader = new BoardLoader();
+        gameBoard = loader.LoadBoard("board.txt");
+        boardWidth = gameBoard.GetLength(0);
+        boardHeight = gameBoard.GetLength(1);
+    }
 
     public void ActualizarTablero()
     {
         bool[,] cloneboard = new bool[boardWidth, boardHeight];
+
         for (int x = 0; x < boardWidth; x++)
         {
             for (int y = 0; y < boardHeight; y++)
             {
                 int aliveNeighbors = 0;
+
                 for (int i = x - 1; i <= x + 1; i++)
                 {
                     for (int j = y - 1; j <= y + 1; j++)
@@ -33,28 +43,25 @@ public class GameBoard
 
                 if (gameBoard[x, y] && aliveNeighbors < 2)
                 {
-                    //Celula muere por baja población
                     cloneboard[x, y] = false;
                 }
                 else if (gameBoard[x, y] && aliveNeighbors > 3)
                 {
-                    //Celula muere por sobrepoblación
                     cloneboard[x, y] = false;
                 }
                 else if (!gameBoard[x, y] && aliveNeighbors == 3)
                 {
-                    //Celula nace por reproducción
                     cloneboard[x, y] = true;
                 }
                 else
                 {
-                    //Celula mantiene el estado que tenía
                     cloneboard[x, y] = gameBoard[x, y];
                 }
             }
         }
-
         gameBoard = cloneboard;
     }
 }
->>>>>>> feature-gameboard
+
+
+
