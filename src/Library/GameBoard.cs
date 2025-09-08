@@ -1,3 +1,14 @@
+/*
+La clase GameBoard tiene como responsabilidad principal representar y actualizar el estado del tablero del juego de la vida. 
+Esto significa que se encarga de aplicar las reglas de evolución de las células y modificar la estructura del tablero para 
+la siguiente iteración del tiempo.
+En cuanto al principio SRP, la clase se centra únicamente en gestionar la lógica del juego. 
+No se ocupa de cargar datos externos como lo hace BoardLoader, ni de mostrar el resultado en pantalla, por lo que se 
+considera que respeta el principio de responsabilidad única.
+Respecto al patrón Expert, la clase cumple con él porque posee toda la información necesaria para decidir cómo deben cambiar 
+las células de acuerdo con sus vecinos. Es decir, es la "experta" en aplicar las reglas del juego, ya que contiene tanto el 
+tablero como los métodos para modificarlo.
+ */
 namespace Ucu.Poo.GameOfLife;
 
 public class GameBoard

@@ -1,3 +1,12 @@
+/*
+La clase GamePrinter se encarga únicamente de mostrar en consola el estado del tablero y actualizarlo en cada iteración.
+Respecto al SRP, cumple con él porque su única responsabilidad es la visualización del juego. No aplica reglas ni carga información, 
+solo imprime el tablero.
+En cuanto al patrón Expert, no sería la experta en los datos del tablero, ya que depende de GameBoard para obtenerlos. 
+Sin embargo, sí es la experta en cómo mostrar esos datos en consola, ya que conoce el formato de salida y cómo representarlo. 
+Por lo tanto, cumple el principio Expert en el contexto de la presentación.
+ */
+
 using System;
 using System.Text;
 using System.Threading;
